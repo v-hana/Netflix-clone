@@ -1,16 +1,19 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import './Login.css'
 
 function Login({ setIsAuthenticated }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-   
     if (email === "test@example.com" && password === "password123") {
-      setIsAuthenticated(true);
+      setIsAuthenticated(true); 
+      localStorage.setItem("isAuthenticated", "true"); 
+      navigate("/home"); 
     } else {
       setError("Invalid email or password");
     }

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect  } from 'react'
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import Login from './Components/Login/Login';
 import NavBar from './Components/NavBar/NavBar'
@@ -8,6 +8,12 @@ import Banner from './Components/Banner/Banner'
 import RowPost from './Components/RowPost/RowPost'
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  useEffect(() => {
+    const authStatus = localStorage.getItem("isAuthenticated");
+    if (authStatus === "true") {
+      setIsAuthenticated(true);
+    }
+  }, []);
   return (
     <Router>
       <div className="App">
